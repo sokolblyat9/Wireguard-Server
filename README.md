@@ -1,6 +1,4 @@
-# Wireguard-Server
-Создание Wireguard Server
-Тело кода:
+# Создание Wireguard Server
 #!/bin/bash
 
 Server() {
