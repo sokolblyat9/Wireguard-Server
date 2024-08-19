@@ -285,30 +285,30 @@ Server() {
         }
         Maska
 
-            Transportniy_Protocol() {
-            PS3="Какой транспортный протокол хояешь использовать? TCP или UDP? : "
-            local vybor
-            select port in tcp udp
-            do
-                case $port in
-                tcp)
-                    port="tcp"
-                    echo "Вы выбрали транспортным прттоколом - $port"
-                    break
-                    ;;
-                udp)
-                    port="udp"
-                    echo "Вы выбрали транспортным протоколом - $port"
-                    break
-                    ;;
-                *)
-                    echo "Вы ошиблись с выбором"
-                    ;;
-                esac
-            done
-            echo "Выбранный транспортный протокол $port"
-            }
-            Transportniy_Protocol
+#             Transportniy_Protocol() {
+#             PS3="Какой транспортный протокол хояешь использовать? TCP или UDP? : "
+#             local vybor
+#             select port in tcp udp
+#             do
+#                 case $port in
+#                 tcp)
+#                     port="tcp"
+#                     echo "Вы выбрали транспортным прттоколом - $port"
+#                     break
+#                     ;;
+#                 udp)
+#                     port="udp"
+#                     echo "Вы выбрали транспортным протоколом - $port"
+#                     break
+#                     ;;
+#                 *)
+#                     echo "Вы ошиблись с выбором"
+#                     ;;
+#                 esac
+#             done
+#             echo "Выбранный транспортный протокол $port"
+#             }
+#             Transportniy_Protocol
 
         function Config-Server  {
             echo "Создадим серверный конфиг, как назовем его?"
@@ -321,7 +321,9 @@ Server() {
             echo "[Interface]" >> "$conf_file"
             echo "Address = $ip_address/$maska_podseti" >> "$conf_file"
             echo "SaveConfig = true" >> "$conf_file"
-###            echo "ListenPort = $per2/$port" >> "$conf_file"
+            #echo "ListenPort = $per2/$port" >> "$conf_file"
+            echo "ListenPort = $per2" >> "$conf_file"
+
             priv_key=$( cat /etc/wireguard/privatekey)
             echo "PrivateKey = $priv_key" >> "$conf_file"
             interface=$(ip -o -4 route show to default | awk '{print $5}')
